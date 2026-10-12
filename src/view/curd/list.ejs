@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Listing page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-4">
+      <h1 style="margin: 10px 0px 15px">Product list</h1>
+      
+      <!-- FIX: Wired up the main header Recycle Bin button correctly -->
+      <div class="mb-3">
+        <a href="/create/products" class="btn btn-outline-info">Add Product</a>
+        <span class="mx-2">||</span>
+        <a href="/products/recycle-bin" class="btn btn-outline-warning">Recycle Bin</a>
+      </div>
+
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th scope="col">SL. No</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col" class="text-center" colspan="3">Action</th>
+          </tr>
+        </thead>
+        
+        <!-- FIX: tbody opens OUTSIDE the loop -->
+        <tbody>
+          <% let sl = 1; %>
+          <% for(let product of products){ %>
+            <tr>
+              <th scope="row"><%= sl %></th>
+              <td><%= product._id.toString().slice(-5) %></td>
+              <td><%= product.name %></td>
+              <td>₹<%= product.price %></td>
+              <td><%= product.brand %></td>
+              <td><%= product.description %></td>
+              <td>
+                <img
+                  src="<%= product.image %>"
+                  alt="Product Image"
+                  style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;"
+                />
+              </td>
+              
+              <!-- FIX: Organized all clear action elements inside single table cells cleanly -->
+              <td>
+                <a href="/edit/products/<%= product._id %>" class="btn btn-sm btn-outline-success">Edit</a>
+              </td>
+              <td>
+                <a href="/view/products/<%= product._id %>" class="btn btn-sm btn-outline-primary">View</a>
+              </td>
+              <td>
+                <a href="/softdelete/products/<%= product._id %>" class="btn btn-sm btn-outline-warning">Soft Delete</a>
+              </td>
+            </tr>
+            <% sl++ %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><%= title %></title>
+    <link
+      href="https://jsdelivr.net"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="background-color: aqua;">
+    <div class="container mt-5">
+      <div class="card shadow-sm mx-auto" style="max-width: 600px;">
+    
+        <div class="card-header bg-primary text-white">
+          <h2 class="mb-0">Product name:<%= vproduct.name %></h2>
+        </div>
+        
+       
+        <div class="card-body">
+          <p class="card-text"><strong>Brand:</strong> <%= vproduct.brand %></p>
+          <p class="card-text"><strong>Price:</strong> ₹<%= vproduct.price %></p>
+          <p class="card-text"><strong>Description:</strong></p>
+          <p class="text-muted"><%= vproduct.description %></p>
+        </div>
+        
+       
+        <div class="card-footer d-flex justify-content-between bg-light">
+          <a href="/products" class="btn btn-secondary">Back to Products</a> ||
+          <a href="/edit/products/<%= vproduct._id %>" class="btn btn-warning">Edit Product</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
